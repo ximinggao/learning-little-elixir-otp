@@ -61,7 +61,7 @@ defmodule Metex.Worker do
 
   ## Helper Functions
 
-  @spec temperature_of(binary) :: <<_::40, _::_*8>>
+  @spec temperature_of(binary) :: :error | {:ok, float}
   def temperature_of(location) do
     url_for(location) |> HTTPoison.get() |> parse_response()
   end

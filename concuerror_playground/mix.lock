@@ -1,0 +1,4 @@
+%{
+  "concuerror": {:hex, :concuerror, "0.20.0", "b73c5cc3efca2ea7258309d659be415e18be63f8cd999afbdffc4e3727b3592e", [:rebar3], [{:getopt, "1.0.1", [hex: :getopt, repo: "hexpm", optional: false]}], "hexpm"},
+  "getopt": {:hex, :getopt, "1.0.1", "c73a9fa687b217f2ff79f68a3b637711bb1936e712b521d8ce466b29cbf7808a", [:rebar3], [], "hexpm"},
+}

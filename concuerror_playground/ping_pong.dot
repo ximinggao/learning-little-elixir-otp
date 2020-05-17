@@ -1,0 +1,21 @@
+digraph {
+  graph [ranksep=0.3]
+  node [shape=box,width=7,fontname=Monospace]
+  "init" [label="Initial"];
+  subgraph interleaving_1 {
+    "{1,1}" [label="   1: <P>: <P.1> = erlang:spawn(erlang, apply, [...])\l"];
+    "init" -> "{1,1}" [weight=1000];
+    "{1,2}" [label="   2: <P>: <P.2> = erlang:spawn(erlang, apply, [...])\l"];
+    "{1,1}" -> "{1,2}" [weight=1000];
+    "{1,3}" [label="   3: <P>: exits normally\l",color=limegreen,penwidth=5];
+    "{1,2}" -> "{1,3}" [weight=1000];
+    "{1,4}" [label="   4: <P.2>: pong = erlang:send(<P.1>, pong)\l"];
+    "{1,3}" -> "{1,4}" [weight=1000];
+    "{1,5}" [label="   5: <P.1>: receives message (pong)\l"];
+    "{1,4}" -> "{1,5}" [weight=1000];
+    "{1,6}" [label="   6: <P.1>: exits normally\l",color=limegreen,penwidth=5];
+    "{1,5}" -> "{1,6}" [weight=1000];
+    "{1,final}" [label="1: Error ([<P.2>] blocked)",style=filled,fillcolor=red];
+    "{1,6}" -> "{1,final}" [weight=1000];
+  }
+}
